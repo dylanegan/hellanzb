@@ -2,8 +2,8 @@ Given /the URL (.*)/ do |url|
   @url = url
 end
 
-When /I setup/ do
-  Hellanzb.setup(@url)
+When /I connect/ do
+  Hellanzb.connect(@url)
 end
 
 Then /I should be able to talk to the server/ do
