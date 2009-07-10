@@ -7,6 +7,10 @@ module Hellanzb
       @queue = Hellanzb::Queue.new(call('list'), self)
     end
 
+    def clear!(all = true)
+      @connection.call('clear', all)
+    end
+
     def call(command, *args)
       @connection.call(command, *args)
     end

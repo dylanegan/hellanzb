@@ -12,4 +12,4 @@ end
 
 $:.unshift File.dirname(__FILE__)
 
-%w( queue server ).each { |lib| require "hellanzb/#{lib}" }
+%w( nzb queue server ).each { |lib| require "hellanzb/#{lib}" }
