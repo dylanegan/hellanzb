@@ -1,6 +1,7 @@
 Feature: Hellanzb Queue
   As a user
   I want to be able to inspect the queued NZBs
+  And manipulate the queue itself
 
   Scenario: Checking
     Given I connect
