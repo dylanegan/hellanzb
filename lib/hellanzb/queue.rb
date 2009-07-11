@@ -18,7 +18,7 @@ module Hellanzb
   private
     def parse_queue(queue)
       @items = queue.inject([]) do |array, nzb|
-        array << Hellanzb::Nzb.new(nzb['id'], nzb['nzbName'], nzb['is_par_recovery'], @server)
+        array << Hellanzb::Nzb.new(nzb['id'], nzb['nzbName'], nzb['is_par_recovery'], self)
         array
       end
     end
