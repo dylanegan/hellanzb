@@ -9,6 +9,10 @@ module Hellanzb
       @queue = queue
     end
 
+    def dequeue!
+      @queue.dequeue!(@id)
+    end
+
     def par_recovery?
       @par_recovery
     end

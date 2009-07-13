@@ -40,11 +40,14 @@ Then /I should get more details for that item/ do
 end
 
 When /^I dequeue an item$/ do
-    pending
+  @nzb = @queue.items.first
+  stub(@connection).call('dequeue', 1)
+  stub(@connection).call('list') { [] }
+  @nzb.dequeue!
 end
 
 Then /^it should no longer be in the queue$/ do
-    pending
+  @queue.items.include?(@nzb).should == false
 end
 
 When /^I move an item down the queue$/ do

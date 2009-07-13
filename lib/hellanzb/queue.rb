@@ -11,6 +11,11 @@ module Hellanzb
       update!
     end
 
+    def dequeue!(id)
+      @server.call('dequeue', id)
+      update!
+    end
+
     def update!
       parse_queue(@server.call('list'))
     end
