@@ -1,7 +1,7 @@
 When /^I access the first item$/ do
-    pending
+  @nzb = @queue.items.first
 end
 
 Then /^it should be an NZB$/ do
-    pending
+  @nzb.class.should == Hellanzb::Nzb
 end
