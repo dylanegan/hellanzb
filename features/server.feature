@@ -18,3 +18,14 @@ Feature: Server
     Given I connect
     When I shut down the server
     Then the connection should fail
+
+  Scenario: Clear everything
+    Given I connect
+    When I clear all downloads
+    Then nothing should be downloading or queued
+
+  Scenario: Cancel the current download
+    Given I connect
+    And the queue is empty
+    When I cancel the current download
+    Then there should be no current download

@@ -38,3 +38,59 @@ end
 Then /I should get more details for that item/ do
   @nzb.name.should == "My First NZB"
 end
+
+When /^I dequeue an item$/ do
+    pending
+end
+
+Then /^it should no longer be in the queue$/ do
+    pending
+end
+
+When /^I move an item down the queue$/ do
+    pending
+end
+
+Then /^it should change its position in the queue$/ do
+    pending
+end
+
+When /^I move an item up the queue$/ do
+    pending
+end
+
+When /^I force an item to start downloading$/ do
+    pending
+end
+
+Then /^it should start downloading$/ do
+    pending
+end
+
+Then /^the current download should move in to the queue$/ do
+    pending
+end
+
+When /^I move an item to the end of the queue$/ do
+    pending
+end
+
+Then /^it should be at the end of the queue$/ do
+    pending
+end
+
+When /^I move an item to the second position$/ do
+    pending
+end
+
+Then /^it should be second in the queue$/ do
+    pending
+end
+
+When /^I move an item to the front of the queue$/ do
+    pending
+end
+
+Then /^it should be next to download$/ do
+    pending
+end

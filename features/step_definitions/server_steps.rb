@@ -33,3 +33,23 @@ end
 Then /the connection should fail/ do
   Hellanzb.server.connected?.should == false
 end
+
+When /^I clear all downloads$/ do
+    pending
+end
+
+Then /^nothing should be downloading or queued$/ do
+    pending
+end
+
+Given /^the queue is empty$/ do
+    pending
+end
+
+When /^I cancel the current download$/ do
+    pending
+end
+
+Then /^there should be no current download$/ do
+    pending
+end

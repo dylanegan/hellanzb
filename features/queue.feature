@@ -20,3 +20,46 @@ Feature: Hellanzb Queue
     And there are items in the queue
     When I access an item
     Then I should get more details for that item
+
+  Scenario: Dequeuing an item
+    Given I connect
+    And there are items in the queue
+    When I dequeue an item
+    Then it should no longer be in the queue
+
+  Scenario: Moving an item down
+    Given I connect
+    And there are items in the queue
+    When I move an item down the queue
+    Then it should change its position in the queue
+
+  Scenario: Moving an item up
+    Given I connect
+    And there are items in the queue
+    When I move an item up the queue
+    Then it should change its position in the queue
+
+  Scenario: Forcing an item to download
+    Given I connect
+    And there are items in the queue
+    When I force an item to start downloading
+    Then it should start downloading
+    And the current download should move in to the queue
+
+  Scenario: Moving an item to the end of the queue
+    Given I connect
+    And there are items in the queue
+    When I move an item to the end of the queue
+    Then it should be at the end of the queue
+
+  Scenario: Moving an item to any position
+    Given I connect
+    And there are items in the queue
+    When I move an item to the second position
+    Then it should be second in the queue
+
+  Scenario: Moving an item to the front of the queue
+    Given I connect
+    And there are items in the queue
+    When I move an item to the front of the queue
+    Then it should be next to download
