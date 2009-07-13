@@ -3,7 +3,6 @@ And /the server is processing/ do
 end
 
 When /I pause the server/ do
-  stub(@connection).call('pause')
   Hellanzb.server.pause!
 end
 
@@ -17,7 +16,6 @@ And /the server is paused/ do
 end
 
 When /I tell it to continue/ do
-  stub(@connection).call('continue')
   Hellanzb.server.continue!
 end
 
@@ -26,7 +24,6 @@ Then /it should start processing/ do
 end
 
 When /I shut down the server/ do
-  stub(@connection).call('shutdown')
   Hellanzb.server.shutdown!
 end
 

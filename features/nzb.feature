@@ -4,7 +4,7 @@ Feature: Hellanzb queued NZB
   To manipulate them
 
   Scenario: Accessing
-    Given I connect
+    Given I connect to hellanzb
     And there are items in the queue
     When I access the first item
     Then it should be an NZB

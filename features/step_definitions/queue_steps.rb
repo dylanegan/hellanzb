@@ -1,10 +1,12 @@
 # Shared
 
-And /there are items in the queue/ do
-  stub(@connection).call('list') { [ { 'id' => 1, 'nzbName' => 'My First NZB', 'is_par_recovery' => false } ] }
+And "there are items in the queue" do
   @queue = Hellanzb.server.queue
+  1.upto(5) do |num|
+    @queue.enqueue(File.expand_path(File.dirname(__FILE__) + "/../support/nzbs/#{num}.nzb"))
+  end
+  sleep 2
   @queue.update!
-  @queue.items.empty?.should == false
 end
 
 # Checking
@@ -20,8 +22,6 @@ end
 # Clearing
 
 When /I clear the queue/ do
-  stub(@connection).call('clear', false)
-  stub(@connection).call('list') { [] }
   @queue.clear!
 end
 
@@ -36,13 +36,11 @@ When /I access an item/ do
 end
 
 Then /I should get more details for that item/ do
-  @nzb.name.should == "My First NZB"
+  @nzb.name.should == "1"
 end
 
 When /^I dequeue an item$/ do
   @nzb = @queue.items.first
-  stub(@connection).call('dequeue', 1)
-  stub(@connection).call('list') { [] }
   @nzb.dequeue!
 end
 

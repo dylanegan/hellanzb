@@ -16,6 +16,10 @@ module Hellanzb
       update!
     end
 
+    def enqueue(file)
+      @server.call('enqueue', file)
+    end
+
     def update!
       parse_queue(@server.call('list'))
     end
