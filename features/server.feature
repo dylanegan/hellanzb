@@ -17,7 +17,7 @@ Feature: Server
   Scenario: Shutting down
     Given I connect to hellanzb
     When I shut down the server
-    Then the connect to hellanzbion should fail
+    Then the connection should fail
 
   Scenario: Clear everything
     Given I connect to hellanzb
