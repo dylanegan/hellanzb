@@ -16,12 +16,51 @@ module Hellanzb
       update!
     end
 
+    def down!(id)
+      @server.call('down', id)
+      update!
+    end
+
     def empty?
       @items.empty?
     end
 
     def enqueue(file)
       @server.call('enqueue', file)
+    end
+
+    def force!(id)
+      @server.call('force', id)
+      update!
+    end
+
+    def last!(id)
+      @server.call('last', id)
+      update!
+    end
+
+    def move!(id, index)
+      @server.call('move', id, index)
+      update!
+    end
+
+    def next!(id)
+      @server.call('next', id)
+      update!
+    end
+
+    def position_for(id)
+      @items.each_with_index do |nzb, index|
+        if nzb.id == id
+          @position = index + 1
+        end
+      end
+      @position
+    end
+
+    def up!(id)
+      @server.call('up', id)
+      update!
     end
 
     def update!

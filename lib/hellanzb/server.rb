@@ -24,6 +24,10 @@ module Hellanzb
       call('continue')
     end
 
+    def currently_downloading
+      call('status')['currently_downloading']
+    end
+
     def downloading?
       call('status')['currently_downloading'].any?
     end

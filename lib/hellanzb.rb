@@ -2,7 +2,7 @@ require 'xmlrpc/client'
 
 module Hellanzb
   def self.connect(url)
-    @server = Hellanzb::Server.new(url)
+    @server ||= Hellanzb::Server.new(url)
   end
 
   def self.server

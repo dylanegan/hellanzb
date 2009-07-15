@@ -31,13 +31,13 @@ Feature: Hellanzb Queue
     Given I connect to hellanzb
     And there are items in the queue
     When I move an item down the queue
-    Then it should change its position in the queue
+    Then it should move down in the queue
 
   Scenario: Moving an item up
     Given I connect to hellanzb
     And there are items in the queue
     When I move an item up the queue
-    Then it should change its position in the queue
+    Then it should move up in the queue
 
   Scenario: Forcing an item to download
     Given I connect to hellanzb

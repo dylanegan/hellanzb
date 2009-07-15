@@ -49,49 +49,60 @@ Then /^it should no longer be in the queue$/ do
 end
 
 When /^I move an item down the queue$/ do
-    pending
+  @nzb = @queue.items.first
+  @position = @nzb.position
+  @nzb.down!
 end
 
-Then /^it should change its position in the queue$/ do
-    pending
+Then /^it should move (\w+) in the queue$/ do |position|
+  @nzb.position.should == (@position + (position == 'up' ? -1 : 1))
 end
 
 When /^I move an item up the queue$/ do
-    pending
+  @nzb = @queue.items.last
+  @position = @nzb.position
+  @nzb.up!
 end
 
 When /^I force an item to start downloading$/ do
-    pending
+  @currently_downloading = Hellanzb.server.currently_downloading
+  @nzb = @queue.items.first
+  @nzb.force!
 end
 
 Then /^it should start downloading$/ do
-    pending
+  pending # need internats
+  Hellanzb.server.currently_downloading.include?(@nzb.name).should == true
 end
 
-Then /^the current download should move in to the queue$/ do
-    pending
+And /^the current download should move in to the queue$/ do
+  pending # need internats
+  @queue.items.include?(@currently_downloading).should == true
 end
 
 When /^I move an item to the end of the queue$/ do
-    pending
+  @nzb = @queue.items.first
+  @nzb.last!
 end
 
 Then /^it should be at the end of the queue$/ do
-    pending
+  @nzb.position.should == @queue.items.size
 end
 
 When /^I move an item to the second position$/ do
-    pending
+  @nzb = @queue.items.first
+  @nzb.position = 2
 end
 
 Then /^it should be second in the queue$/ do
-    pending
+  @queue.items[1].id.should == @nzb.id
 end
 
 When /^I move an item to the front of the queue$/ do
-    pending
+  @nzb = @queue.items.last
+  @nzb.next!
 end
 
 Then /^it should be next to download$/ do
-    pending
+  @nzb.position.should == 1
 end
