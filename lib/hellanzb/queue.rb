@@ -16,6 +16,10 @@ module Hellanzb
       update!
     end
 
+    def empty?
+      @items.empty?
+    end
+
     def enqueue(file)
       @server.call('enqueue', file)
     end

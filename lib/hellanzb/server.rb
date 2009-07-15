@@ -7,8 +7,13 @@ module Hellanzb
       @queue = Hellanzb::Queue.new(call('list'), self)
     end
 
+    def cancel!
+      call('cancel')
+    end
+
     def clear!(all = true)
-      @connection.call('clear', all)
+      call('clear', all)
+      @queue.update!
     end
 
     def connected?
@@ -17,6 +22,10 @@ module Hellanzb
 
     def continue!
       call('continue')
+    end
+
+    def downloading?
+      call('status')['currently_downloading'].any?
     end
 
     def processing?

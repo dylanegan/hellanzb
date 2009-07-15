@@ -32,21 +32,22 @@ Then /the connection should fail/ do
 end
 
 When /^I clear all downloads$/ do
-    pending
+  Hellanzb.server.clear!
 end
 
 Then /^nothing should be downloading or queued$/ do
-    pending
+  Hellanzb.server.queue.empty?.should == true
+  Hellanzb.server.downloading?.should == false
 end
 
-Given /^the queue is empty$/ do
-    pending
+And /^the queue is empty$/ do
+  Hellanzb.server.queue.clear!
 end
 
 When /^I cancel the current download$/ do
-    pending
+  Hellanzb.server.cancel!
 end
 
 Then /^there should be no current download$/ do
-    pending
+  Hellanzb.server.downloading?.should == false
 end
