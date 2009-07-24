@@ -2,14 +2,14 @@ require 'xmlrpc/client'
 
 module Hellanzb
   def self.connect(url)
-    @server ||= Hellanzb::Server.new(url)
+    @client ||= Hellanzb::Client.new(url)
   end
 
-  def self.server
-    @server
+  def self.client
+    @client
   end
 end
 
 $:.unshift File.dirname(__FILE__)
 
-%w( nzb queue server ).each { |lib| require "hellanzb/#{lib}" }
+%w( client nzb queue ).each { |lib| require "hellanzb/#{lib}" }

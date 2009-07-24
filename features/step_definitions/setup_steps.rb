@@ -11,5 +11,5 @@ Given "I connect to hellanzb" do
 end
 
 Then "I should be able to talk to the server" do
-  Hellanzb.server.call('system.listMethods').should == ["force", "process", "dequeue", "move", "down", "cancel", "shutdown", "asciiart", "aolsay", "setrarpass", "enqueueurl", "next", "maxrate", "status", "enqueuenewzbin", "enqueue", "pause", "last", "clear", "list", "up", "continue", "system.methodHelp", "system.listMethods", "system.methodSignature"]
+  Hellanzb.client.call('system.listMethods').should == ["force", "process", "dequeue", "move", "down", "cancel", "shutdown", "asciiart", "aolsay", "setrarpass", "enqueueurl", "next", "maxrate", "status", "enqueuenewzbin", "enqueue", "pause", "last", "clear", "list", "up", "continue", "system.methodHelp", "system.listMethods", "system.methodSignature"]
 end

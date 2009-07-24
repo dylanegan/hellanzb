@@ -1,7 +1,7 @@
 # Shared
 
 And "there are items in the queue" do
-  @queue = Hellanzb.server.queue
+  @queue = Hellanzb.client.queue
   1.upto(5) do |num|
     @queue.enqueue(File.expand_path(File.dirname(__FILE__) + "/../support/nzbs/#{num}.nzb"))
   end
@@ -65,14 +65,14 @@ When /^I move an item up the queue$/ do
 end
 
 When /^I force an item to start downloading$/ do
-  @currently_downloading = Hellanzb.server.currently_downloading
+  @currently_downloading = Hellanzb.client.currently_downloading
   @nzb = @queue.items.first
   @nzb.force!
 end
 
 Then /^it should start downloading$/ do
   pending # need internats
-  Hellanzb.server.currently_downloading.include?(@nzb.name).should == true
+  Hellanzb.client.currently_downloading.include?(@nzb.name).should == true
 end
 
 And /^the current download should move in to the queue$/ do

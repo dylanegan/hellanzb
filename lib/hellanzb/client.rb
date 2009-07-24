@@ -1,5 +1,5 @@
 module Hellanzb
-  class Server
+  class Client
     attr_reader :queue
 
     def initialize(url)

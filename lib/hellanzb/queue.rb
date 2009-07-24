@@ -1,23 +1,23 @@
 module Hellanzb
   class Queue
     attr_reader :items
-    def initialize(queue, server)
-      @server = server
+    def initialize(queue, client)
+      @client = client
       parse_queue(queue)
     end
 
     def clear!
-      @server.clear!(false)
+      @client.clear!(false)
       update!
     end
 
     def dequeue!(id)
-      @server.call('dequeue', id)
+      @client.call('dequeue', id)
       update!
     end
 
     def down!(id)
-      @server.call('down', id)
+      @client.call('down', id)
       update!
     end
 
@@ -26,26 +26,26 @@ module Hellanzb
     end
 
     def enqueue(file)
-      @server.call('enqueue', file)
+      @client.call('enqueue', file)
     end
 
     def force!(id)
-      @server.call('force', id)
+      @client.call('force', id)
       update!
     end
 
     def last!(id)
-      @server.call('last', id)
+      @client.call('last', id)
       update!
     end
 
     def move!(id, index)
-      @server.call('move', id, index)
+      @client.call('move', id, index)
       update!
     end
 
     def next!(id)
-      @server.call('next', id)
+      @client.call('next', id)
       update!
     end
 
@@ -59,12 +59,12 @@ module Hellanzb
     end
 
     def up!(id)
-      @server.call('up', id)
+      @client.call('up', id)
       update!
     end
 
     def update!
-      parse_queue(@server.call('list'))
+      parse_queue(@client.call('list'))
     end
 
   private

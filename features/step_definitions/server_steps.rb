@@ -1,53 +1,53 @@
 And /the server is processing/ do
-  Hellanzb.server.processing?.should == true
+  Hellanzb.client.processing?.should == true
 end
 
 When /I pause the server/ do
-  Hellanzb.server.pause!
+  Hellanzb.client.pause!
 end
 
 Then /it should stop processing/ do
-  Hellanzb.server.processing?.should == false
+  Hellanzb.client.processing?.should == false
 end
 
 And /the server is paused/ do
-  Hellanzb.server.pause!
-  Hellanzb.server.processing?.should == false
+  Hellanzb.client.pause!
+  Hellanzb.client.processing?.should == false
 end
 
 When /I tell it to continue/ do
-  Hellanzb.server.continue!
+  Hellanzb.client.continue!
 end
 
 Then /it should start processing/ do
-  Hellanzb.server.processing?.should == true
+  Hellanzb.client.processing?.should == true
 end
 
 When /I shut down the server/ do
-  Hellanzb.server.shutdown!
+  Hellanzb.client.shutdown!
 end
 
 Then /the connection should fail/ do
-  Hellanzb.server.connected?.should == false
+  Hellanzb.client.connected?.should == false
 end
 
 When /^I clear all downloads$/ do
-  Hellanzb.server.clear!
+  Hellanzb.client.clear!
 end
 
 Then /^nothing should be downloading or queued$/ do
-  Hellanzb.server.queue.empty?.should == true
-  Hellanzb.server.downloading?.should == false
+  Hellanzb.client.queue.empty?.should == true
+  Hellanzb.client.downloading?.should == false
 end
 
 And /^the queue is empty$/ do
-  Hellanzb.server.queue.clear!
+  Hellanzb.client.queue.clear!
 end
 
 When /^I cancel the current download$/ do
-  Hellanzb.server.cancel!
+  Hellanzb.client.cancel!
 end
 
 Then /^there should be no current download$/ do
-  Hellanzb.server.downloading?.should == false
+  Hellanzb.client.downloading?.should == false
 end
