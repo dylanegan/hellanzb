@@ -23,14 +23,6 @@ Then /it should start processing/ do
   Hellanzb.client.processing?.should == true
 end
 
-When /I shut down the server/ do
-  Hellanzb.client.shutdown!
-end
-
-Then /the connection should fail/ do
-  Hellanzb.client.connected?.should == false
-end
-
 When /^I clear all downloads$/ do
   Hellanzb.client.clear!
 end

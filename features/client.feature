@@ -14,11 +14,6 @@ Feature: Server
     When I tell it to continue
     Then it should start processing
 
-  Scenario: Shutting down
-    Given I connect to hellanzb
-    When I shut down the server
-    Then the connection should fail
-
   Scenario: Clear everything
     Given I connect to hellanzb
     When I clear all downloads
