@@ -3,7 +3,7 @@ module Hellanzb
     attr_reader :queue
 
     def initialize(url)
-      @connection = XMLRPC::Client.new2(url)
+      @server = Hellanzb::Server.connect(url)
       @queue = Hellanzb::Queue.new(call('list'), self)
     end
 
@@ -17,7 +17,7 @@ module Hellanzb
     end
 
     def connected?
-      !@connection.nil?
+      !@server.nil?
     end
 
     def continue!
@@ -42,11 +42,11 @@ module Hellanzb
 
     def shutdown!
       call('shutdown')
-      @connection = nil
+      @server = nil
     end
 
     def call(command, *args)
-      @connection.call(command, *args)
+      @server.call(command, *args)
     end
   end
 end
