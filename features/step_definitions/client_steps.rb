@@ -1,45 +1,49 @@
+Given "I connect to hellanzb" do
+  @client = Hellanzb::Client.new('http://hellanzb:changeme@localhost:8771')
+end
+
 And /the server is processing/ do
-  Hellanzb.client.processing?.should == true
+  @client.processing?.should == true
 end
 
 When /I pause the server/ do
-  Hellanzb.client.pause!
+  @client.pause!
 end
 
 Then /it should stop processing/ do
-  Hellanzb.client.processing?.should == false
+  @client.processing?.should == false
 end
 
 And /the server is paused/ do
-  Hellanzb.client.pause!
-  Hellanzb.client.processing?.should == false
+  @client.pause!
+  @client.processing?.should == false
 end
 
 When /I tell it to continue/ do
-  Hellanzb.client.continue!
+  @client.continue!
 end
 
 Then /it should start processing/ do
-  Hellanzb.client.processing?.should == true
+  @client.processing?.should == true
 end
 
 When /^I clear all downloads$/ do
-  Hellanzb.client.clear!
+  @client.clear!
 end
 
 Then /^nothing should be downloading or queued$/ do
-  Hellanzb.client.queue.empty?.should == true
-  Hellanzb.client.downloading?.should == false
+  @client.queue.empty?.should == true
+  @client.downloading?.should == false
 end
 
 And /^the queue is empty$/ do
-  Hellanzb.client.queue.clear!
+  @client.queue.clear!
 end
 
 When /^I cancel the current download$/ do
-  Hellanzb.client.cancel!
+  @client.cancel!
 end
 
 Then /^there should be no current download$/ do
-  Hellanzb.client.downloading?.should == false
+  @client.downloading?.should == false
 end

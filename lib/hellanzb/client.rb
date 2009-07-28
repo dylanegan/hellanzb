@@ -1,9 +1,15 @@
+require 'xmlrpc/client'
+
+$:.unshift File.dirname(__FILE__)
+
+%w( nzb queue ).each { |lib| require lib }
+
 module Hellanzb
   class Client
-    attr_reader :queue, :server
+    attr_reader :queue
 
     def initialize(url)
-      @server = Hellanzb::Server.connect(url)
+      @connection = XMLRPC::Client.new2(url)
       @queue = Hellanzb::Queue.new(call('list'), self)
     end
 
@@ -40,13 +46,8 @@ module Hellanzb
       call('pause')
     end
 
-    def shutdown!
-      call('shutdown')
-      @server = nil
-    end
-
     def call(command, *args)
-      @server.call(command, *args)
+      @connection.call(command, *args)
     end
   end
 end
