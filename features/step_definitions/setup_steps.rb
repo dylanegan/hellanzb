@@ -7,6 +7,7 @@ When "I connect" do
 end
 
 Given "I connect to hellanzb" do
+  Hellanzb::Server.run(File.expand_path(File.dirname(__FILE__) + '/../support/hellanzb.conf'))
   Hellanzb.connect('http://hellanzb:changeme@localhost:8771')
 end
 
