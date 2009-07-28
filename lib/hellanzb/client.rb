@@ -1,6 +1,6 @@
 module Hellanzb
   class Client
-    attr_reader :queue
+    attr_reader :queue, :server
 
     def initialize(url)
       @server = Hellanzb::Server.connect(url)
