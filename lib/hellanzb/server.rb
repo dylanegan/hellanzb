@@ -11,7 +11,7 @@ module Hellanzb
 
     def self.connect(url)
       server = Hellanzb::Server.new
-      raise NoServerFound("No server running") unless server.running?
+      raise(Hellanzb::NoServerFound, "No server running") unless server.running?
       server.connect(url)
       server
     end
