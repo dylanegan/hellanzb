@@ -22,10 +22,6 @@ module Hellanzb
       @queue.update!
     end
 
-    def connected?
-      !@server.nil?
-    end
-
     def continue!
       call('continue')
     end
