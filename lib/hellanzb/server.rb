@@ -1,32 +1,22 @@
 module Hellanzb
-  class NoServerFound < StandardError; end
   class Server 
-    attr_reader :queue
-
     def self.run(config)
-      server = Hellanzb::Server.new
-      server.run!(config) unless server.running?
+      server = Hellanzb::Server.new(config)
+      server.start! unless server.running?
       server
     end
 
-    def self.connect(url)
-      server = Hellanzb::Server.new
-      raise(Hellanzb::NoServerFound, "No server running") unless server.running?
-      server.connect(url)
-      server
+    def initialize(config)
+      @config = config
     end
 
-    def connect(url)
-      @connection = XMLRPC::Client.new2(url)
-    end
-
-    def run!(config)
-      `#{File.dirname(__FILE__) + '/../../bin/hellanzb'} #{File.expand_path(config)}`
+    def start!
+      `#{File.dirname(__FILE__) + '/../../bin/hellanzb'} #{File.expand_path(@config)} #{pid_file}`
     end
 
     def pid
-      if File.exists?("/tmp/hellanzb.rb.pid")
-        `cat /tmp/hellanzb.rb.pid`[/\d+/]
+      if File.exists?(pid_file)
+        `cat #{pid_file}`[/\d+/]
       else
         nil
       end
@@ -36,25 +26,12 @@ module Hellanzb
       pid && `ps #{pid} | wc -l`.to_i > 1
     end
 
-    def continue!
-      call('continue')
+    def stop!
+      `kill #{pid}` if running?
     end
 
-    def processing?
-      !call('status')['is_paused']
-    end
-
-    def pause!
-      call('pause')
-    end
-
-    def shutdown!
-      call('shutdown')
-      @connection = nil
-    end
-
-    def call(command, *args)
-      @connection.call(command, *args)
+    def pid_file
+      return "/tmp/#{@config.gsub(/(\/|\.| )/, '')}.pid"
     end
   end
 end

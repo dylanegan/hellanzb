@@ -1,9 +1,10 @@
 #!/bin/bash
 
 CONFIGFILE=$1
+PIDFILE=$2
 
 hellanzb.py -c $CONFIGFILE -D
 
 sleep 3
 
-ps ax | grep "hellanzb\.py.*${CONFIGFILE}" | grep -v grep | awk '{print $1}' > /tmp/hellanzb.rb.pid
+ps ax | grep "hellanzb\.py.*${CONFIGFILE}" | grep -v grep | awk '{print $1}' > $PIDFILE
