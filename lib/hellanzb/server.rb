@@ -27,7 +27,7 @@ module Hellanzb
     end
 
     def stop!
-      `kill #{pid}` if running?
+      `kill #{pid} && rm #{pid_file}` if running?
     end
 
     def pid_file
