@@ -58,6 +58,10 @@ module Hellanzb
       @position
     end
 
+    def rarpass(id, pass)
+      @client.call('setrarpass', id, pass)
+    end
+
     def up(id)
       @client.call('up', id)
       update

@@ -37,6 +37,10 @@ module Hellanzb
       @queue.move(@id, index)
     end
 
+    def rarpass(pass)
+      @queue.rarpass(@id, pass)
+    end
+
     def up
       @queue.up(@id)
     end
