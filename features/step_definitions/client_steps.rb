@@ -47,3 +47,15 @@ end
 Then /^there should be no current download$/ do
   @client.downloading?.should == false
 end
+
+And /^the maxrate is (\d+) KB\/s$/ do |maxrate|
+  @client.maxrate.should == maxrate.to_i
+end
+
+When /^I change it to (\d+) KB\/s$/ do |maxrate|
+  @client.maxrate = maxrate.to_i
+end
+
+Then /^it should be set to (\d+) KB\/s$/ do |maxrate|
+  @client.maxrate.should == maxrate.to_i
+end

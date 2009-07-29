@@ -24,3 +24,9 @@ Feature: Client
     And the queue is empty
     When I cancel the current download
     Then there should be no current download
+
+  Scenario: Changing the maxrate
+    Given I connect to hellanzb
+    And the maxrate is 0 KB/s
+    When I change it to 500 KB/s
+    Then it should be set to 500 KB/s

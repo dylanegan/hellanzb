@@ -35,6 +35,14 @@ module Hellanzb
       status.currently_downloading.any?
     end
 
+    def maxrate
+      status.maxrate
+    end
+
+    def maxrate=(rate)
+      call('maxrate', rate)
+    end
+
     def processing?
       !status.is_paused
     end
