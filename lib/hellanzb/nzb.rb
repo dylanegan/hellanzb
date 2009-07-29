@@ -9,24 +9,24 @@ module Hellanzb
       @queue = queue
     end
 
-    def dequeue!
-      @queue.dequeue!(@id)
+    def dequeue
+      @queue.dequeue(@id)
     end
 
-    def down!
-      @queue.down!(@id)
+    def down
+      @queue.down(@id)
     end
 
-    def force!
-      @queue.force!(@id)
+    def force
+      @queue.force(@id)
     end
 
-    def last!
-      @queue.last!(@id)
+    def last
+      @queue.last(@id)
     end
 
-    def next!
-      @queue.next!(@id)
+    def next
+      @queue.next(@id)
     end
 
     def position
@@ -34,11 +34,11 @@ module Hellanzb
     end
 
     def position=(index)
-      @queue.move!(@id, index)
+      @queue.move(@id, index)
     end
 
-    def up!
-      @queue.up!(@id)
+    def up
+      @queue.up(@id)
     end
 
     def par_recovery?

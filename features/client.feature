@@ -1,6 +1,6 @@
-Feature: Server
+Feature: Client
   As a user
-  I should be able to control the server
+  I should be able to control the server via this client
 
   Scenario: Pausing
     Given I connect to hellanzb

@@ -6,7 +6,7 @@ And "there are items in the queue" do
     @queue.enqueue(File.expand_path(File.dirname(__FILE__) + "/../support/nzbs/#{num}.nzb"))
   end
   sleep 2
-  @queue.update!
+  @queue.update
 end
 
 # Checking
@@ -22,7 +22,7 @@ end
 # Clearing
 
 When /I clear the queue/ do
-  @queue.clear!
+  @queue.clear
 end
 
 Then /the queue should be empty/ do
@@ -41,7 +41,7 @@ end
 
 When /^I dequeue an item$/ do
   @nzb = @queue.items.first
-  @nzb.dequeue!
+  @nzb.dequeue
 end
 
 Then /^it should no longer be in the queue$/ do
@@ -51,7 +51,7 @@ end
 When /^I move an item down the queue$/ do
   @nzb = @queue.items.first
   @position = @nzb.position
-  @nzb.down!
+  @nzb.down
 end
 
 Then /^it should move (\w+) in the queue$/ do |position|
@@ -61,13 +61,13 @@ end
 When /^I move an item up the queue$/ do
   @nzb = @queue.items.last
   @position = @nzb.position
-  @nzb.up!
+  @nzb.up
 end
 
 When /^I force an item to start downloading$/ do
   @currently_downloading = @client.currently_downloading
   @nzb = @queue.items.first
-  @nzb.force!
+  @nzb.force
 end
 
 Then /^it should start downloading$/ do
@@ -82,7 +82,7 @@ end
 
 When /^I move an item to the end of the queue$/ do
   @nzb = @queue.items.first
-  @nzb.last!
+  @nzb.last
 end
 
 Then /^it should be at the end of the queue$/ do
@@ -100,7 +100,7 @@ end
 
 When /^I move an item to the front of the queue$/ do
   @nzb = @queue.items.last
-  @nzb.next!
+  @nzb.next
 end
 
 Then /^it should be next to download$/ do

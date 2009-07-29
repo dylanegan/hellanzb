@@ -7,7 +7,7 @@ And /the server is processing/ do
 end
 
 When /I pause the server/ do
-  @client.pause!
+  @client.pause
 end
 
 Then /it should stop processing/ do
@@ -15,12 +15,12 @@ Then /it should stop processing/ do
 end
 
 And /the server is paused/ do
-  @client.pause!
+  @client.pause
   @client.processing?.should == false
 end
 
 When /I tell it to continue/ do
-  @client.continue!
+  @client.continue
 end
 
 Then /it should start processing/ do
@@ -28,7 +28,7 @@ Then /it should start processing/ do
 end
 
 When /^I clear all downloads$/ do
-  @client.clear!
+  @client.clear
 end
 
 Then /^nothing should be downloading or queued$/ do
@@ -37,11 +37,11 @@ Then /^nothing should be downloading or queued$/ do
 end
 
 And /^the queue is empty$/ do
-  @client.queue.clear!
+  @client.queue.clear
 end
 
 When /^I cancel the current download$/ do
-  @client.cancel!
+  @client.cancel
 end
 
 Then /^there should be no current download$/ do

@@ -6,19 +6,19 @@ module Hellanzb
       parse_queue(queue)
     end
 
-    def clear!
-      @client.clear!(false)
-      update!
+    def clear
+      @client.clear(false)
+      update
     end
 
-    def dequeue!(id)
+    def dequeue(id)
       @client.call('dequeue', id)
-      update!
+      update
     end
 
-    def down!(id)
+    def down(id)
       @client.call('down', id)
-      update!
+      update
     end
 
     def empty?
@@ -29,24 +29,24 @@ module Hellanzb
       @client.call('enqueue', file)
     end
 
-    def force!(id)
+    def force(id)
       @client.call('force', id)
-      update!
+      update
     end
 
-    def last!(id)
+    def last(id)
       @client.call('last', id)
-      update!
+      update
     end
 
-    def move!(id, index)
+    def move(id, index)
       @client.call('move', id, index)
-      update!
+      update
     end
 
-    def next!(id)
+    def next(id)
       @client.call('next', id)
-      update!
+      update
     end
 
     def position_for(id)
@@ -58,12 +58,12 @@ module Hellanzb
       @position
     end
 
-    def up!(id)
+    def up(id)
       @client.call('up', id)
-      update!
+      update
     end
 
-    def update!
+    def update
       parse_queue(@client.call('list'))
     end
 

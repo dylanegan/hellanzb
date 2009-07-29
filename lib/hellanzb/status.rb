@@ -11,7 +11,7 @@ module Hellanzb
       parse_status(status)
     end
 
-    def update!
+    def update
       parse_status(@client.call('status'))
     end
 

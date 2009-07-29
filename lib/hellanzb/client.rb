@@ -14,16 +14,16 @@ module Hellanzb
       @status = Hellanzb::Status.new(call('status'), self)
     end
 
-    def cancel!
+    def cancel
       call('cancel')
     end
 
-    def clear!(all = true)
+    def clear(all = true)
       call('clear', all)
-      @queue.update!
+      @queue.update
     end
 
-    def continue!
+    def continue
       call('continue')
     end
 
@@ -39,12 +39,12 @@ module Hellanzb
       !status.is_paused
     end
 
-    def pause!
+    def pause
       call('pause')
     end
 
     def status
-      @status.update!
+      @status.update
       @status
     end
 
