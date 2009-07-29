@@ -2,7 +2,7 @@ require 'xmlrpc/client'
 
 $:.unshift File.dirname(__FILE__)
 
-%w( nzb queue ).each { |lib| require lib }
+%w( nzb queue status ).each { |lib| require lib }
 
 module Hellanzb
   class Client
@@ -11,6 +11,7 @@ module Hellanzb
     def initialize(url)
       @connection = XMLRPC::Client.new2(url)
       @queue = Hellanzb::Queue.new(call('list'), self)
+      @status = Hellanzb::Status.new(call('status'), self)
     end
 
     def cancel!
@@ -27,19 +28,24 @@ module Hellanzb
     end
 
     def currently_downloading
-      call('status')['currently_downloading']
+      status.currently_downloading
     end
 
     def downloading?
-      call('status')['currently_downloading'].any?
+      status.currently_downloading.any?
     end
 
     def processing?
-      !call('status')['is_paused']
+      !status.is_paused
     end
 
     def pause!
       call('pause')
+    end
+
+    def status
+      @status.update!
+      @status
     end
 
     def call(command, *args)
