@@ -2,7 +2,7 @@ module Hellanzb
   class Server 
     def self.run(config)
       server = Hellanzb::Server.new(config)
-      server.start! unless server.running?
+      server.start unless server.running?
       server
     end
 
@@ -10,7 +10,7 @@ module Hellanzb
       @config = config
     end
 
-    def start!
+    def start
       `#{File.dirname(__FILE__) + '/../../bin/hellanzb'} #{File.expand_path(@config)} #{pid_file}`
     end
 
@@ -26,7 +26,7 @@ module Hellanzb
       pid && `ps #{pid} | wc -l`.to_i > 1
     end
 
-    def stop!
+    def stop
       `kill #{pid} && rm #{pid_file}` if running?
     end
 

@@ -8,5 +8,5 @@ end
 
 Then /^one should be running$/ do
   @server.running?.should == true
-  @server.stop!
+  @server.stop
 end
