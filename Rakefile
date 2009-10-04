@@ -33,3 +33,8 @@ end
 
 desc "Runs the Cucumber features by default"
 task :default => :features
+
+desc 'Run bacon'
+task :bacon do
+  puts `ruby tmp/bin/bacon #{Dir["spec/**/*_spec.rb"].join(" ")}`
+end
