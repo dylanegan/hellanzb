@@ -1,3 +1,5 @@
+require File.dirname(__FILE__) + '/../../tmp/vendor/environment'
+
 require 'spec/expectations'
 
 require File.dirname(__FILE__) + '/../../lib/hellanzb'
